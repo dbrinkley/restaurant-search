@@ -1,5 +1,5 @@
 {
-  "name": "ravenous-eats",
+  "name": "restaurant-search",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,7 +8,9 @@
     "@testing-library/user-event": "^7.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-keyboard-event-handler": "^1.5.4",
+    "react-scripts": "3.4.1",
+    "whatwg-fetch": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

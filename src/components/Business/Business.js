@@ -3,37 +3,44 @@ import './Business.css'
 
 
 class Business extends Component {
-  render() {
+  constructor(props){
+    super(props);
 
-      
-  let business = {
-    imageSrc: 'https://s3.amazonaws.com/codecademy-content/programs/react/ravenous/pizza.jpg',
-    name: 'MarginOtto Pizzeria',
-    address: '1010 Paddington Way',
-    city: 'Flavortown',
-    state: 'NY',
-    zipCode: '10101',
-    category: 'Italian',
-    rating: 4.5,
-    reviewCount: 90
+    this.handleImgclick = this.handleImgclick.bind(this);
   }
 
+
+  //create url for google maps app
+  urlEncodeAddress() {
+    let url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(this.props.business.name)}+${encodeURIComponent(this.props.business.address)}+${encodeURIComponent(this.props.business.city)} +${encodeURIComponent(this.props.business.state)}+${encodeURIComponent(this.props.business.zipCode)}`;
+    url = url.replace(" ", "+");
+    return url;
+  }
+
+  handleImgclick(){
+    window.open(this.props.business.url);
+  }
+
+
+  render() {
     return (
       <div className="Business">
         <div className="image-container">
-          <img src={business.imageSrc} alt=''/>
+          <img src={this.props.business.imageSrc} alt={this.props.business.name} onClick={this.handleImgclick}/>
         </div>
-        <h2>{business.name}</h2>
+        <h2>{this.props.business.name}</h2>
         <div className="Business-information">
           <div className="Business-address">
-            <p>{business.address}</p>
-            <p>{business.city}</p>
-            <p>{business.state} {business.zipCode}</p>
+            <a href={this.urlEncodeAddress()} target="_blank" rel="noopener noreferrer">
+              <p>{this.props.business.address}</p>
+              <p>{this.props.business.city}</p>
+              <p>{this.props.business.state} {this.props.business.zipCode}</p>
+            </a>
           </div>
           <div className="Business-reviews">
-            <h3>{business.category}</h3>
-            <h3 className="rating">{business.rating} stars</h3>
-            <p>{business.reviewCount} reviews</p>
+            <h3>{this.props.business.category}</h3>
+            <h3 className="rating">{this.props.business.rating} stars</h3>
+            <p>{this.props.business.reviewCount} reviews</p>
           </div>
         </div>
       </div>
